@@ -1,0 +1,73 @@
+<h1>Editar Usuário</h1>
+<form action="/user/update" method="post" class="form">
+    <input type="hidden" name="id" value="{{user.id}}">
+    <div class="mb-3">
+        <label for="name" class="form-label">Nome do produto:</label>
+        <input type="text" name="name" class="form-control" placeholder="Digite o Nome do Produto"
+            value="{{user.name}}">
+    </div>
+    <div class="mb-3">
+        <label for="old" class="form-label">Idade:</label>
+        <input type="text" name="old" class="form-control" placeholder="Digite o Valor do Produto" value="{{user.old}}">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Editar">
+</form>
+
+<hr>
+<h2 id="addEndereco">Adicionar endereço</h2>
+<div class="container-address">
+    <div class="form-container-address container-address">
+        <form action="/address/create" method="post" class="form">
+            <input type="hidden" name="UserId" value="{{user.id}}">
+            <div class="mb-3">
+                <label for="name" class="form-label">Cidade:</label>
+                <input type="text" name="city" class="form-control" placeholder="Digite o nome da sua cidade">
+            </div>
+            <div class="mb-3">
+                <label for="counties" class="form-label">Bairro / Municipio:</label>
+                <input type="text" name="counties" class="form-control" placeholder="Digite o nome do município">
+            </div>
+            <div class="mb-3">
+                <label for="street" class="form-label">Rua:</label>
+                <input type="text" name="street" class="form-control" placeholder="Digite o nome da rua">
+            </div>
+            <div class="mb-3">
+                <label for="number" class="form-label">Número:</label>
+                <input type="text" name="number" class="form-control" placeholder="Digite o número da residência">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Cadastrar">
+        </form>
+    </div>
+
+    <div class="container-list">
+        <h2>Lista de endereços</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Cidade</th>
+                    <th scope="col">Município</th>
+                    <th scope="col">Rua</th>
+                    <th scope="col">Número</th>
+                    <th scope="col">Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each user.Addresses}}
+                <tr>
+                    <td>{{this.city}}</td>
+                    <td>{{this.counties}}</td>
+                    <td>{{this.street}}</td>
+                    <td>{{this.number}}</td>
+                    <td>
+                        <form action="/address/delete" method="post">
+                            <input type="hidden" name="UserId" value="{{this.UserId}}">
+                            <input type="hidden" name="id" value="{{this.id}}">
+                            <input type="submit" class="btn btn-outline-danger" value="Excluir">
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

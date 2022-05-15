@@ -1,0 +1,28 @@
+<h1>Uruários Cadastrados</h1>
+<div class="container-users">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Idade</th>
+                <th scope="col">Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td><a href="/user/edit/{{this.id}}" class="text-decoration-none">{{this.name}}</a></td>
+                <td>{{this.old}}</td>
+                <td>
+                    <form action="/user/delete" method="post">
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <input type="submit" class="btn btn-outline-danger" value="Excluir">
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
